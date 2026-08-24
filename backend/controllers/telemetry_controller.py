@@ -6,9 +6,9 @@ Handles requests for sensor data generation, health scores, and dashboard state 
 from __future__ import annotations
 
 from flask import jsonify, request
-from backend.models.schemas import ApiResponse
-from backend.services.plant_service import plant_service
-from backend.middleware.validation import validate_boolean_query_param
+from models.schemas import ApiResponse
+from services.plant_service import plant_service
+from middleware.validation import validate_boolean_query_param
 
 
 class TelemetryController:

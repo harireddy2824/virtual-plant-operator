@@ -9,7 +9,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 import threading
 import logging
-from backend.config import settings
+from config import settings
 from database.schemas import COLLECTION_VALIDATORS, INDEXES
 
 log = logging.getLogger(__name__)

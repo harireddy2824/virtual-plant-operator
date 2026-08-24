@@ -6,8 +6,8 @@ Handles active fault alerts and ISA-18.2 grouped alert responses.
 from __future__ import annotations
 
 from flask import jsonify
-from backend.models.schemas import ApiResponse
-from backend.services.plant_service import plant_service
+from models.schemas import ApiResponse
+from services.plant_service import plant_service
 
 
 class AlertsController:

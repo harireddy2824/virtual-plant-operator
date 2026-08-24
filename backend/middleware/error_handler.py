@@ -8,7 +8,7 @@ from __future__ import annotations
 import logging
 from flask import Flask, jsonify, g
 from werkzeug.exceptions import HTTPException
-from backend.models.schemas import ApiResponse
+from models.schemas import ApiResponse
 
 log = logging.getLogger(__name__)
 

@@ -13,9 +13,9 @@ log = logging.getLogger(__name__)
 
 from ai_recommendation.recommender import format_ai_recommendation, get_ai_recommendation
 from anomaly_detection.detector import AnomalyDetector
-from backend.services.ai_copilot_service import AiCopilotService
-from backend.services.event_service import EventService
-from backend.services.telemetry_service import TelemetryService
+from services.ai_copilot_service import AiCopilotService
+from services.event_service import EventService
+from services.telemetry_service import TelemetryService
 from database.mongo_client import (
     get_alert_counts,
     get_recent_reports,

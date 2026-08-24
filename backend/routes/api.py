@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from flask import Blueprint, jsonify, request, send_file
-from backend.services.plant_service import plant_service
-from backend.services.pdf_service import generate_pdf_response
+from services.plant_service import plant_service
+from services.pdf_service import generate_pdf_response
 
 api_bp = Blueprint("api", __name__)
 

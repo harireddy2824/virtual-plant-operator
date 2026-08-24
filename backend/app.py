@@ -14,12 +14,8 @@ for p in [str(BACKEND_DIR), str(ROOT_DIR)]:
 
 from flask import Flask, make_response, send_from_directory
 from flask_cors import CORS
-from backend.config import settings
-
-try:
-    from backend.routes.api import api_bp
-except ImportError:
-    from routes.api import api_bp
+from config import settings
+from routes.api import api_bp
 
 
 def create_app() -> Flask:

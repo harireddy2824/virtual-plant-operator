@@ -12,7 +12,7 @@ export const MetricsStrip: React.FC<MetricsStripProps> = ({ data, uptimeStr }) =
   const healthTrend = data?.health?.trend ?? 'Recovering';
   const activeAlerts = data?.alerts?.active_count ?? 7;
   const criticalEvents = data?.alerts?.critical_count ?? 2;
-  const aiEngine = data?.status?.ai_mode ?? 'Ollama';
+  const aiEngine = data?.status?.ai_mode ?? 'Grok';
   const aiConfidence = Math.round(data?.ai_analysis?.confidence ?? 93);
   const lastUpdated = data?.status?.last_updated ? new Date(data.status.last_updated).toLocaleTimeString([], { hour12: false }) : '13:54:16';
   const tickCount = data?.status?.ticks ?? 16;

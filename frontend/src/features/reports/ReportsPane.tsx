@@ -31,7 +31,7 @@ export const ReportsPane: React.FC<ReportsPaneProps> = ({ data }) => {
     { id: 'maintenance', name: 'Maintenance Report', category: 'Asset Management', icon: 'fa-wrench', description: 'Equipment service logs, work orders, & seal replacements' },
     { id: 'energy', name: 'Energy Report', category: 'Utility Analytics', icon: 'fa-bolt', description: 'Power draw (kW), power factor, & energy efficiency rating' },
     { id: 'downtime', name: 'Downtime Report', category: 'Asset Management', icon: 'fa-hourglass-half', description: 'Unplanned outage breakdown & RUL forecasts' },
-    { id: 'ai_perf', name: 'AI Performance Report', category: 'AI Intelligence', icon: 'fa-brain', description: 'Llama-3.2 accuracy, confidence ratings, & inference latency' },
+    { id: 'ai_perf', name: 'AI Performance Report', category: 'AI Intelligence', icon: 'fa-brain', description: 'Grok AI accuracy, confidence ratings, & inference latency' },
   ];
 
   const reports: ReportItem[] = data?.reports ?? [
@@ -231,7 +231,7 @@ export const ReportsPane: React.FC<ReportsPaneProps> = ({ data }) => {
                   <div className="col-6">Severity: <strong className="text-warning">{previewReport.severity}</strong></div>
                   <div className="col-6">Health Score: <strong className="text-success">{previewReport.health_score}/100</strong></div>
                   <div className="col-6">Anomaly Type: <strong className="text-primary">{previewReport.anomaly_type}</strong></div>
-                  <div className="col-6">AI Engine: <strong>Ollama Llama-3.2</strong></div>
+                  <div className="col-6">AI Engine: <strong>Grok AI API</strong></div>
                 </div>
                 <div className="p-3 twin-card-box mb-3 small">
                   <strong className="text-primary d-block mb-1">AI Root Cause Analysis:</strong>

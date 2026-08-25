@@ -80,12 +80,12 @@ export const SettingsPane: React.FC = () => {
                 <h5 className="fw-bold text-dark mb-3 border-bottom border-secondary pb-2">2. AI Models &amp; Inference Engine</h5>
                 <div className="row g-3">
                   <div className="col-md-6">
-                    <label className="form-label text-muted small fw-bold">Ollama Base URL</label>
-                    <input type="text" className="form-control bg-white border-secondary text-dark" value="http://localhost:11434" readOnly />
+                    <label className="form-label text-muted small fw-bold">Grok API Status</label>
+                    <input type="text" className="form-control bg-white border-secondary text-dark" value="xAI Cloud Service (Server-side API Key)" readOnly />
                   </div>
                   <div className="col-md-6">
                     <label className="form-label text-muted small fw-bold">LLM Model Target</label>
-                    <input type="text" className="form-control bg-white border-secondary text-dark" value="llama3.2 (3B Parameters)" readOnly />
+                    <input type="text" className="form-control bg-white border-secondary text-dark" value="Grok API (grok-2-latest)" readOnly />
                   </div>
                 </div>
               </div>
@@ -170,7 +170,7 @@ export const SettingsPane: React.FC = () => {
                 <pre className="p-3 twin-card-box text-success small font-mono mb-0" style={{ maxHeight: '200px', overflowY: 'auto' }}>
                   [INFO] SCADA Engine polling active.
                   [INFO] SimPy simulation thread locked.
-                  [INFO] Ollama Llama-3.2 model ready.
+                  [INFO] Grok AI model ready.
                 </pre>
               </div>
             )}

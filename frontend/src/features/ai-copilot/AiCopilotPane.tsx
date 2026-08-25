@@ -31,7 +31,7 @@ export const AiCopilotPane: React.FC<AiCopilotPaneProps> = ({ data, isLoading })
   const structured = ai?.structured ?? {};
   const riskLevel = structured.risk_level ?? ai?.risk_level ?? 'Normal';
   const confidence = structured.confidence_score ?? Math.round(ai?.confidence ?? 98);
-  const source = ai?.source ?? 'Ollama';
+  const source = ai?.source ?? 'Grok';
 
   const rootCause = structured.root_cause || ai?.analysis || 'Process telemetry vector operating within nominal limits.';
   const detectedEvidence = structured.detected_evidence || 'All sensor vectors within ±1.5% baseline tolerance.';
@@ -77,7 +77,7 @@ export const AiCopilotPane: React.FC<AiCopilotPaneProps> = ({ data, isLoading })
                 <Sparkles size={18} color="#4B5563" />
                 <span>1. AI Incident Summary</span>
                 <span className="ms-auto badge badge-status-info small">
-                  <Brain size={12} className="me-1" /> {source} Llama-3.2
+                  <Brain size={12} className="me-1" /> {source} Grok AI
                 </span>
               </div>
               <div className="cockpit-card-body">
@@ -195,7 +195,7 @@ export const AiCopilotPane: React.FC<AiCopilotPaneProps> = ({ data, isLoading })
               </div>
               <div className="py-2">
                 <div className="display-4 fw-extrabold text-primary font-mono">{confidence}%</div>
-                <div className="small text-muted mt-1">Llama-3.2 Model Certainty</div>
+                <div className="small text-muted mt-1">Grok AI Model Certainty</div>
                 <div className="progress mt-3" style={{ height: '8px', background: '#E5E7EB' }}>
                   <div className="progress-bar bg-primary" style={{ width: `${confidence}%` }}></div>
                 </div>
@@ -273,7 +273,7 @@ export const AiCopilotPane: React.FC<AiCopilotPaneProps> = ({ data, isLoading })
                 </div>
                 <div className="d-flex align-items-center gap-2 small text-muted mt-1">
                   <span className="badge bg-success">SYNCED</span>
-                  <span>Ollama Llama-3.2 dynamic model pipeline active.</span>
+                  <span>Grok AI dynamic model pipeline active.</span>
                 </div>
               </div>
             </div>

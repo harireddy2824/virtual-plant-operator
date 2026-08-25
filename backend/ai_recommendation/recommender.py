@@ -1,10 +1,10 @@
 """
 AI Recommendation Engine
-=========================
+========================
 
-Local recommendation engine powered by Ollama running llama3.2.
+Recommendation engine powered by Grok API.
 Produces structured incident analysis for anomaly events and falls back
-cleanly when Ollama is unavailable.
+cleanly when Grok API is unavailable or unconfigured.
 """
 
 from __future__ import annotations
@@ -14,20 +14,10 @@ import re
 from dataclasses import dataclass
 from typing import Any
 
-import threading
-import time
-import requests
 from dotenv import load_dotenv
+from services.grok_service import grok_service
 
 load_dotenv()
-
-_ollama_status_cache = None
-_ollama_status_last_check = 0.0
-_ollama_status_lock = threading.Lock()
-
-OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", os.getenv("OLLAMA_URL", "http://localhost:11434"))
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2")
-OLLAMA_TIMEOUT = float(os.getenv("OLLAMA_TIMEOUT", "45"))
 
 
 @dataclass(frozen=True)
@@ -49,7 +39,7 @@ class AIRecommendation:
     maintenance_priority: str = "P4 Routine"
     operator_instructions: list[str] = None
     raw_response: str = ""
-    source: str = "ollama"
+    source: str = "grok"
     error: str = ""
 
     def to_dict(self) -> dict[str, Any]:
@@ -76,38 +66,7 @@ class AIRecommendation:
         }
 
 
-class OllamaClient:
-    def __init__(self, base_url: str = OLLAMA_BASE_URL, model: str = OLLAMA_MODEL, timeout: float = OLLAMA_TIMEOUT):
-        self.base_url = base_url.rstrip("/")
-        self.model = model
-        self.timeout = timeout
 
-    @property
-    def api_url(self) -> str:
-        return f"{self.base_url}/api/generate"
-
-    def is_available(self) -> bool:
-        try:
-            response = requests.get(f"{self.base_url}/api/tags", timeout=min(self.timeout, 5))
-            response.raise_for_status()
-            return True
-        except Exception:
-            return False
-
-    def generate(self, prompt: str) -> str:
-        payload = {
-            "model": self.model,
-            "prompt": prompt,
-            "stream": False,
-            "options": {
-                "temperature": 0.3,
-                "top_p": 0.9,
-            },
-        }
-        response = requests.post(self.api_url, json=payload, timeout=self.timeout)
-        response.raise_for_status()
-        data = response.json()
-        return str(data.get("response", "")).strip()
 
 
 class RecommendationPromptTemplate:
@@ -159,7 +118,7 @@ class RecommendationParser:
     def parse(raw_text: str) -> dict[str, Any]:
         cleaned = raw_text.strip()
         if not cleaned:
-            raise ValueError("Empty Ollama response")
+            raise ValueError("Empty Grok API response")
 
         sections: dict[str, list[str]] = {key: [] for key in RecommendationParser.SECTION_HEADERS}
         current_key: str | None = None
@@ -373,13 +332,12 @@ def get_ai_recommendation(
     fallback = _fallback_analysis(reading, anomaly_type, actions, severity)
 
     prompt = RecommendationPromptTemplate.build(reading, anomaly_type, actions, severity)
-    client = OllamaClient()
 
     try:
-        status = ollama_status()
+        status = grok_status()
         if not status.get("available", False):
-            raise RuntimeError("Ollama is not available")
-        raw_response = client.generate(prompt)
+            raise RuntimeError(status.get("error") or "Grok API is not available")
+        raw_response = grok_service.generate(prompt)
         parsed = RecommendationParser.parse(raw_response)
         recommendation = AIRecommendation(
             root_cause=parsed["root_cause"],
@@ -399,7 +357,7 @@ def get_ai_recommendation(
             maintenance_priority=fallback.maintenance_priority,
             operator_instructions=fallback.operator_instructions,
             raw_response=raw_response,
-            source="ollama",
+            source="grok",
         )
     except Exception as exc:
         recommendation = fallback
@@ -414,21 +372,6 @@ def format_ai_recommendation(recommendation: dict[str, Any]) -> str:
     return RecommendationFormatter.to_markdown(recommendation)
 
 
-def ollama_status() -> dict[str, Any]:
-    global _ollama_status_cache, _ollama_status_last_check
-    now = time.time()
-    with _ollama_status_lock:
-        if _ollama_status_cache is not None and (now - _ollama_status_last_check) < 10.0:
-            return _ollama_status_cache
+def grok_status() -> dict[str, Any]:
+    return grok_service.check_status()
 
-        client = OllamaClient()
-        try:
-            response = requests.get(f"{client.base_url}/api/tags", timeout=1.5)
-            response.raise_for_status()
-            res = {"available": True, "model": client.model, "base_url": client.base_url, "error": ""}
-        except Exception as exc:
-            res = {"available": False, "model": client.model, "base_url": client.base_url, "error": str(exc)}
-        
-        _ollama_status_cache = res
-        _ollama_status_last_check = now
-        return res

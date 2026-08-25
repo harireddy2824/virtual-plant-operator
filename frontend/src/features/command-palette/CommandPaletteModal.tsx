@@ -50,7 +50,7 @@ export const CommandPaletteModal: React.FC<CommandPaletteModalProps> = ({
     { type: 'nav', id: 'alerts', label: 'Jump to Alerts', icon: 'fa-triangle-exclamation' },
     { type: 'nav', id: 'reports', label: 'Jump to Incident Reports', icon: 'fa-file-contract' },
     { type: 'action', id: 'inject', label: 'Inject Simulated Anomaly', icon: 'fa-bolt text-warning', fn: onInjectAnomaly },
-    { type: 'action', id: 'ai-refresh', label: 'Run Ollama AI Analysis', icon: 'fa-robot text-accent', fn: onRefreshAi },
+    { type: 'action', id: 'ai-refresh', label: 'Run Grok AI Analysis', icon: 'fa-robot text-accent', fn: onRefreshAi },
     { type: 'action', id: 'theme', label: 'Toggle Dark/Light Theme', icon: 'fa-moon', fn: onToggleTheme },
   ];
 

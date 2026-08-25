@@ -141,7 +141,7 @@ function bindEvents() {
     try {
       await refreshAiAnalysisApi();
       await refreshDashboard();
-      showToast("Ollama AI diagnostic completed", "success");
+      showToast("Grok AI diagnostic completed", "success");
     } catch (e) {
       console.error(e);
       showToast("AI diagnostic execution failed", "error");

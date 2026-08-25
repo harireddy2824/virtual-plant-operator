@@ -163,7 +163,7 @@ export function updateHero(data, stateStore) {
 
   const connEl = el("connection-status");
   const aiConn = data.ai_connection || {};
-  const aiLive = aiConn.available || ai.source === "ollama" || (ai.source === "idle" && status.ai_mode === "Ollama");
+  const aiLive = aiConn.available || ai.source === "grok" || (ai.source === "idle" && status.ai_mode === "Grok");
   connEl.className = `status-pill ${aiLive ? "status-ok" : "status-warning"}`;
   connEl.innerHTML = `<i class="fa-solid fa-signal"></i> ${aiLive ? "Connected" : "AI Fallback"}`;
 
@@ -175,13 +175,13 @@ export function updateHero(data, stateStore) {
   const riskLevel = ai_s.risk_level || ai.risk_level || "--";
   const aiConn2 = data.ai_connection || {};
   const aiConnLabel = aiConn2.available
-    ? `Ollama / ${aiConn2.model || "llama3.2"}`
-    : ai.source === "ollama" ? "Ollama / llama3.2"
+    ? `Grok / ${aiConn2.model || "grok-2-latest"}`
+    : ai.source === "grok" ? "Grok API"
     : ai.source === "fallback" ? "Fallback"
-    : (status.ai_mode === "Ollama" ? "Ollama / llama3.2" : "Idle");
+    : (status.ai_mode === "Grok" ? "Grok API" : "Idle");
   el("ai-source-pill").innerHTML = `<i class="fa-solid fa-brain"></i> ${aiConnLabel}`;
   el("ai-source-pill").className = `pill ${
-    aiConnLabel.startsWith("Ollama") ? "pill-ok" : aiConnLabel === "Fallback" ? "pill-warn" : "pill-dim"
+    aiConnLabel.startsWith("Grok") ? "pill-ok" : aiConnLabel === "Fallback" ? "pill-warn" : "pill-dim"
   }`;
 
   el("ai-confidence-pill").textContent = `Conf: ${Math.round(ai.confidence || 0)}%`;

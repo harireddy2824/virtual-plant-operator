@@ -141,7 +141,7 @@ export function usePlantTelemetry() {
     try {
       await triggerAiAnalysis();
       await refreshData();
-      showToast('Ollama AI diagnostic completed', 'success');
+      showToast('Grok AI diagnostic completed', 'success');
     } catch (e) {
       showToast('AI diagnostic execution failed', 'error');
     } finally {

@@ -22,7 +22,7 @@ flowchart TD
     SIM["SimPy Discrete-Event Simulator"]
     DETECTOR["PyTorch Autoencoder & Scikit-learn"]
     RULES["ISA-18.2 Decision Rule Engine"]
-    OLLAMA["Ollama Llama-3.2 Diagnostic AI"]
+    GROK["Grok API Diagnostic Engine"]
     PDF["ReportLab PDF Generator"]
   end
 
@@ -46,4 +46,4 @@ flowchart TD
 2. **Gunicorn Production Server**: Standalone Gunicorn WSGI application server (`gunicorn app:app --bind 0.0.0.0:$PORT`) running inside `backend/`.
 3. **Enterprise Security & CORS**: Dynamic CORS origin evaluation supporting both local Vite development and production Railway frontend URLs.
 4. **Machine Learning Anomaly Detection**: PyTorch Autoencoder and Scikit-learn model evaluation with automatic fallback rule overrides.
-5. **Explainable AI (XAI)**: Ollama Llama-3.2 local model diagnostic engine with configurable `OLLAMA_BASE_URL` environment variables.
+5. **Explainable AI (XAI)**: Grok API diagnostic engine configured server-side via `XAI_API_KEY` environment variables.

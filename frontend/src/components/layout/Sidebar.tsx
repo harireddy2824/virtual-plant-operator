@@ -92,7 +92,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
         <div className="sidebar-meta-info">
           <div><i className="fa-solid fa-server me-1"></i> Mode: <span className="fw-semibold">Autonomous</span></div>
-          <div><i className="fa-solid fa-database me-1"></i> Engine: <span className="fw-semibold">Ollama</span></div>
+          <div><i className="fa-solid fa-database me-1"></i> Engine: <span className="fw-semibold">Grok</span></div>
         </div>
       </div>
     </aside>

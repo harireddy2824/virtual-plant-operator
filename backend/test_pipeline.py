@@ -69,7 +69,7 @@ def test_health_score():
 
 
 def test_ai_recommendation():
-    separator("5. AI Recommendation (fallback)")
+    separator("5. AI Recommendation (Grok API)")
     reading = {"temperature": 95, "pressure": 72, "flow_rate": 40, "vibration": 0.9,
                "timestamp": "2024-01-01T00:00:00"}
     actions = actions_to_dict(evaluate(reading))

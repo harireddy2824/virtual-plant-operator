@@ -12,7 +12,7 @@ An enterprise-grade, AI-powered industrial monitoring and digital twin platform 
 | **Data Visualizations** | Chart.js 4.x · SVG Sparklines · Canvas | Real-time trend curves, sparklines, and animated gauges |
 | **Backend Framework** | Python 3.11 · Flask 3.x WSGI · Gunicorn | Production WSGI backend service (`backend/app.py`) |
 | **Machine Learning** | PyTorch Autoencoder · Scikit-learn | Multi-variate anomaly detection with rule overrides |
-| **AI Copilot** | Ollama Llama-3.2 (3B local) | Natural language incident analysis & XAI feature attribution |
+| **AI Copilot** | Grok API (xAI Cloud) | Natural language incident analysis & XAI feature attribution |
 | **Database Layer** | MongoDB Atlas · PyMongo 4.7+ | `$jsonSchema` validators, compound TTL indexes, `$facet` pipelines |
 | **Deployment** | Railway Monorepo / Gunicorn / Vite | Independent cloud service deployment for backend & frontend |
 
@@ -27,7 +27,7 @@ virtual-plant-operator/
 │   ├── config.py                # Environment Settings manager
 │   ├── requirements.txt         # Backend Python dependencies (including Gunicorn)
 │   ├── test_pipeline.py         # Backend smoke test suite
-│   ├── ai_recommendation/       # Ollama Llama-3.2 diagnostic engine
+│   ├── ai_recommendation/       # Grok API diagnostic engine
 │   ├── anomaly_detection/       # PyTorch Autoencoder anomaly detector
 │   ├── database/                # MongoDB client & collection validators
 │   ├── decision_engine/         # ISA-18.2 safety rule engine
@@ -105,7 +105,8 @@ This repository is structured as a production monorepo optimized for **Railway**
   - `PORT`: `${PORT}`
   - `FLASK_ENV`: `production`
   - `MONGO_URI`: `mongodb+srv://...` (your MongoDB Atlas connection URI)
-  - `OLLAMA_BASE_URL`: `http://your-ollama-service:11434`
+  - `XAI_API_KEY`: `your_grok_api_key`
+  - `XAI_MODEL`: `grok-2-latest`
   - `CORS_ORIGIN`: `https://your-frontend.up.railway.app`
 
 ### Service 2: React Frontend Application

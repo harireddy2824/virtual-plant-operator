@@ -24,10 +24,11 @@ class Settings:
     MONGO_DB: str = os.getenv("MONGO_DB", "virtual_plant_db")
     MONGO_CONNECT_TIMEOUT_MS: int = int(os.getenv("MONGO_CONNECT_TIMEOUT_MS", "2000"))
 
-    # Ollama AI Config
-    OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", os.getenv("OLLAMA_URL", "http://localhost:11434"))
-    OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "llama3.2")
-    OLLAMA_TIMEOUT: int = int(os.getenv("OLLAMA_TIMEOUT", "45"))
+    # Grok AI Config
+    XAI_API_KEY: str = os.getenv("XAI_API_KEY", os.getenv("GROK_API_KEY", ""))
+    XAI_MODEL: str = os.getenv("XAI_MODEL", os.getenv("GROK_MODEL", "grok-2-latest"))
+    XAI_BASE_URL: str = os.getenv("XAI_BASE_URL", "https://api.x.ai/v1")
+    XAI_TIMEOUT: int = int(os.getenv("XAI_TIMEOUT", "45"))
 
     # Security & JWT Config
     CORS_ORIGIN: str = os.getenv("CORS_ORIGIN", os.getenv("FRONTEND_URL", "*"))

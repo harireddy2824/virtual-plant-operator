@@ -16,7 +16,7 @@ class AiCopilotService:
         if not ai_payload:
             return 0
         base = 68
-        base += 22 if ai_payload.get("source") == "ollama" else 6
+        base += 22 if ai_payload.get("source") == "grok" else 6
         base += {"Normal": 3, "Warning": 8, "Critical": 14}.get(severity, 6)
         base -= 12 if ai_payload.get("error") else 0
         return max(35, min(98, base))

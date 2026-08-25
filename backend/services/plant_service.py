@@ -187,7 +187,7 @@ class PlantMonitoringService:
             "health": snapshot["health"],
             "status": {
                 "plant_mode": snapshot["severity"],
-                "ai_mode": "Ollama",
+                "ai_mode": "Grok",
                 "database": "MongoDB",
                 "ticks": self.tick_count,
                 "last_updated": snapshot["timestamp"],

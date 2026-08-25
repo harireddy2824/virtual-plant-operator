@@ -85,7 +85,7 @@ export const DashboardPane: React.FC<DashboardPaneProps> = ({ sensors, data }) =
                 {aiConfidence && aiConfidence > 0 ? `${aiConfidence}%` : 'N/A'}
               </div>
               <span className="small text-muted mt-1 d-block">
-                {aiConfidence && aiConfidence > 0 ? 'Llama-3.2 Active' : 'Awaiting validation data'}
+                {aiConfidence && aiConfidence > 0 ? 'Grok AI Active' : 'Awaiting validation data'}
               </span>
             </div>
           </div>

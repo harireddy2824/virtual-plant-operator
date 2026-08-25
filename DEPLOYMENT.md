@@ -67,5 +67,5 @@ python scripts/backup_db.py
 | `MONGO_URI` | MongoDB connection URI | `mongodb://localhost:27017/` |
 | `MONGO_DB` | MongoDB database name | `virtual_plant_db` |
 | `JWT_SECRET` | Secret key for signing JWT tokens | `vpo-super-secret-key...` |
-| `OLLAMA_BASE_URL` | Ollama AI server URL | `http://localhost:11434` |
-| `OLLAMA_MODEL` | Ollama model name | `llama3.2` |
+| `XAI_API_KEY` | Grok API key (server-side) | `your_grok_api_key` |
+| `XAI_MODEL` | Grok model name | `grok-2-latest` |
